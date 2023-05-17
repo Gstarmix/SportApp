@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_datas', function (Blueprint $table) {
+        Schema::create('suscriptions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->string('nom');
-            $table->string('prenom');
-            $table->string('date_naissance');
-            $table->string('téléphone');
+            $table->string('license')->nullable();
+            $table->boolean('accepted')->default(false);
+            $table->integer('member');
+            $table->float('total_price');
+            $table->float('payed');
         });
     }
 
