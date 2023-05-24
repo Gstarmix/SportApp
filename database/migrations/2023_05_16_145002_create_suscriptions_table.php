@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('member');
             $table->float('total_price');
             $table->float('payed');
+            $table->timestamps();
         });
     }
 

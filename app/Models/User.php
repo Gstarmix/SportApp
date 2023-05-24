@@ -13,7 +13,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
 
-    protected $roles = [
+    public $roles = [
         'admin',
         'membre asso',
         'sportif',
@@ -47,15 +47,28 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
 
     public function getRole () {
         return $this->roles[$this->role];
     }
 
-    public function getDatas () {
-        // récupère les données de la taple user_data
+    public function userData()
+    {
+        return $this->hasOne(UserData::class);
+    }
+    
+    public function suscriptions()
+    {
+        return $this->hasMany(Suscription::class);
+    }
+    
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, 'course_participants');
+    }
+    
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
     }
 }

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->enum('day_name', ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']);
             $table->foreignId('moniteur_id')->constrained('users');
+            $table->timestamps();
         });
     }
 

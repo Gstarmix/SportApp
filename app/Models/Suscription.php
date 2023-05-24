@@ -5,19 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Suscription extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'nom',
-        'age_min',
-        'age_max',
-        'sport',
+        'user_id',
+        'license',
+        'accepted',
+        'member',
+        'total_price',
+        'payed',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function tarifs()
+    {
+        return $this->belongsToMany(Tarif::class, 'suscription_tarif');
     }
 }

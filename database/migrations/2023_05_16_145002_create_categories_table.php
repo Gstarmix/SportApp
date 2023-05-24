@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('age_max');
             $table->string('sport');
             $table->foreignId('user_id')->constrained();
+            $table->timestamps();
         });
     }
 
