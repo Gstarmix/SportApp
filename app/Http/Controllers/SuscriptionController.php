@@ -10,19 +10,33 @@ use Illuminate\Support\Facades\Auth;
 
 class SuscriptionController extends Controller
 {
+    // public function index()
+    // {
+    //     $user = Auth::user();
+    //     $suscriptions = $user->suscriptions;
+    //     $users = User::all();
+    //     $tarifs = Tarif::all(); 
+    
+    //     if ($suscriptions == null || $suscriptions->isEmpty()) {
+    //         return view('suscriptions.create', compact('users', 'tarifs'));
+    //     } else {
+    //         return view('suscriptions.index', compact('suscriptions'));
+    //     }
+    // }
+
     public function index()
     {
-        $user = Auth::user();
-        $suscriptions = $user->suscriptions;
-        $users = User::all();
-        $tarifs = Tarif::all(); 
-    
-        if ($suscriptions == null || $suscriptions->isEmpty()) {
-            return view('suscriptions.create', compact('users', 'tarifs'));
-        } else {
-            return view('suscriptions.index', compact('suscriptions'));
-        }
+        $suscriptions = Suscription::with('tarifs')->get();
+        return view('suscriptions.index', compact('suscriptions'));
     }
+
+    // public function index()
+    // {
+    //     $suscriptions = Suscription::with('tarifs')->get();
+    //     dd($suscriptions);
+    //     return view('suscriptions.index', compact('suscriptions'));
+    // }
+
 
     // public function index()
     // {
@@ -40,24 +54,48 @@ class SuscriptionController extends Controller
         return view('suscriptions.create', compact('tarifs'));
     }
 
+    // public function store(Request $request)
+    // {
+    //     try {
+    //         $request->validate([
+    //             'user_id' => 'required|exists:users,id',
+    //             'license' => 'nullable|string',
+    //             'accepted' => 'required|boolean',
+    //             'member' => 'required|int',
+    //             'total_price' => 'required|numeric',
+    //             'payed' => 'required|numeric',
+    //             'tarifs' => 'required|array',
+    //             'tarifs.*' => 'exists:tarifs,id',
+    //         ]);
+    
+    //         $suscription = Suscription::create($request->all());
+    //         $suscription->tarifs()->attach($request->tarifs);
+    //     } catch (\Exception $e) {
+    //         return redirect()->back()->withErrors(['msg' => 'Erreur lors de l\'insertion des données : ' . $e->getMessage()]);
+    //     }
+    
+    //     return redirect()->route('suscriptions.index')->with('success', 'Suscription créée avec succès.');
+    // }
+
     public function store(Request $request)
-    {
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'license' => 'nullable|string',
-            'accepted' => 'required|boolean',
-            'member' => 'required|int',
-            'total_price' => 'required|numeric',
-            'payed' => 'required|numeric',
-            'tarifs' => 'required|array',
-            'tarifs.*' => 'exists:tarifs,id',
-        ]);
+{
+    $request->validate([
+        'user_id' => 'required|exists:users,id',
+        'license' => 'nullable|string',
+        'accepted' => 'required|boolean',
+        'member' => 'required|int',
+        'total_price' => 'required|numeric',
+        'payed' => 'required|numeric',
+        'tarifs' => 'required|array',
+        'tarifs.*' => 'exists:tarifs,id',
+    ]);
 
-        $suscription = Suscription::create($request->all());
-        $suscription->tarifs()->attach($request->tarifs);
+    $suscription = Suscription::create($request->all());
+    $suscription->tarifs()->attach($request->tarifs);
 
-        return redirect()->route('suscriptions.index')->with('success', 'Suscription créée avec succès.');
-    }
+    return redirect()->route('suscriptions.index')->with('success', 'Suscription créée avec succès.');
+}
+    
 
     public function show(Suscription $suscription)
     {

@@ -25,6 +25,6 @@ class Suscription extends Model
 
     public function tarifs()
     {
-        return $this->belongsToMany(Tarif::class, 'suscription_tarif');
+        return $this->belongsToMany(Tarif::class, 'suscription_tarifs');
     }
 }

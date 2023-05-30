@@ -18,6 +18,6 @@ class Tarif extends Model
 
     public function suscriptions()
     {
-        return $this->belongsToMany(Suscription::class, 'suscription_tarif');
+        return $this->belongsToMany(Suscription::class, 'suscriptions_tarifs');
     }
 }
