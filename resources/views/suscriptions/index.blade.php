@@ -21,11 +21,9 @@
                         <p><strong>Prix total:</strong> {{ $suscription->total_price }}</p>
                         <p><strong>Paiement:</strong> {{ $suscription->payed }}</p>
                         <p><strong>Tarifs:</strong>
-                            <ul>
                             @foreach($suscription->tarifs as $tarif)
-                                <li>{{ $tarif->nom }}</li>
+                                {{ $tarif->nom }}
                             @endforeach
-                            </ul>
                         </p>
                         <div>
                             <a href="{{ route('suscriptions.show', $suscription) }}">Voir</a>
