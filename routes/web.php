@@ -30,7 +30,7 @@ Route::get('/', function () {
         return redirect('/login');
     }
 
-    // Obtenir les abonnements de l'utilisateur et les tarifs qui leur sont associés
+    // Obtenir les abonnements de l'utilisateur et les tarifs qui leur sont associésfais c
     $suscriptions = $user->suscriptions;
     
     foreach ($suscriptions as $suscription) {

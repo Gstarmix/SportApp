@@ -22,10 +22,8 @@
                         <p><strong>Paiement:</strong> {{ $suscription->payed }}</p>
                         <p><strong>Tarifs:</strong>
                             <ul>
-                            @foreach($suscriptions as $suscription)
-                                @foreach($suscription->tarifs as $tarif)
-                                    <p>{{ $tarif->nom }}</p>
-                                @endforeach
+                            @foreach($suscription->tarifs as $tarif)
+                                <li>{{ $tarif->nom }}</li>
                             @endforeach
                             </ul>
                         </p>
