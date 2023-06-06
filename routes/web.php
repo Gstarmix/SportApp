@@ -7,7 +7,9 @@ use App\Http\Controllers\SuscriptionController;
 use App\Http\Controllers\TarifsController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\CategoriesController;
+use App\Models\Suscription;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +23,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $user = Auth::user();
+
+    if (!$user) {
+        // Si l'utilisateur n'est pas connecté, redirection vers la page de connexion
+        return redirect('/login');
+    }
+
+    // Obtenir les abonnements de l'utilisateur et les tarifs qui leur sont associés
+    $suscriptions = $user->suscriptions;
+    
+    foreach ($suscriptions as $suscription) {
+        dd($suscription->tarifs);
+    }
 });
 
 Route::get('/dashboard', function () {

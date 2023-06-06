@@ -7,6 +7,9 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="mb-3">
+                <a href="{{ route('users.create') }}" class="text-blue-500">Créer un utilisateur</a>
+            </div>
             <div>
                 <table>
                     <thead>
@@ -17,7 +20,7 @@
                             <th>Prénom</th>
                             <th>Date de naissance</th>
                             <th>Téléphone</th>
-                            <th>Rôle</th>  <!-- Ajout de la colonne Rôle -->
+                            <th>Rôle</th>  
                             <th>Actions</th>
                         </tr>
                     </thead>

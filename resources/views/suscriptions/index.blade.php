@@ -8,6 +8,9 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div>
+                <a href="{{ route('suscriptions.create') }}">Ajouter une souscription</a>
+            </div>
+            <div>
                 @foreach($suscriptions as $suscription)
                     <div>
                         <p><strong>ID:</strong> {{ $suscription->id }}</p>
@@ -19,9 +22,11 @@
                         <p><strong>Paiement:</strong> {{ $suscription->payed }}</p>
                         <p><strong>Tarifs:</strong>
                             <ul>
+                            @foreach($suscriptions as $suscription)
                                 @foreach($suscription->tarifs as $tarif)
-                                    <li>{{ $tarif->nom }}</li>
+                                    <p>{{ $tarif->nom }}</p>
                                 @endforeach
+                            @endforeach
                             </ul>
                         </p>
                         <div>

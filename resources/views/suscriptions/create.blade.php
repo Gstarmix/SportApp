@@ -28,7 +28,8 @@
             <!-- Champ d'acceptation -->
             <div>
                 <label for="accepted">Accepté :</label>
-                <input id="accepted" type="checkbox" name="accepted" />
+                <input type="hidden" name="accepted" value="0">
+                <input id="accepted" type="checkbox" name="accepted" value="1" {{ old('accepted') == '1' ? 'checked' : '' }}>
             </div>
 
             <!-- Champ de membre -->
