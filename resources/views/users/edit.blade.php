@@ -44,7 +44,11 @@
 
                     <div class="flex items-center">
                         <label for="role" class="w-48"><i class="fas fa-user-tag mr-2"></i>Rôle</label>
-                        <input type="text" id="role" name="role" value="{{ $user->getRole() }}" required class="p-2 bg-gray-700 rounded w-full input-black">
+                        <select id="role" name="role" required class="p-2 bg-gray-700 rounded w-full input-black">
+                            <option value="admin" {{ $user->getRole() == 'admin' ? 'selected' : '' }}>Admin</option>
+                            <option value="moderator" {{ $user->getRole() == 'moderator' ? 'selected' : '' }}>Modérateur</option>
+                            <option value="user" {{ $user->getRole() == 'user' ? 'selected' : '' }}>Utilisateur</option>
+                        </select>
                     </div>
 
                     <div>
