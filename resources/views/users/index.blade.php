@@ -5,50 +5,50 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12 bg-gray-900">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="mb-3">
-                <a href="{{ route('users.create') }}" class="text-blue-500">Créer un utilisateur</a>
+                <a href="{{ route('users.create') }}" class="py-2 px-4 text-white hover:text-gray-100 bg-blue-500 hover:bg-blue-600 rounded"><i class="fas fa-user-plus mr-2"></i>Créer un utilisateur</a>
             </div>
-            <div>
-                <table>
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg text-white">
+                <table class="w-full">
                     <thead>
                         <tr>
-                            <th>Nom</th>
-                            <th>Email</th>
-                            <th>Nom</th>
-                            <th>Prénom</th>
-                            <th>Date de naissance</th>
-                            <th>Téléphone</th>
-                            <th>Rôle</th>  
-                            <th>Actions</th>
+                            <th class="border-b border-gray-600 p-2 text-left">Nom</th>
+                            <th class="border-b border-gray-600 p-2 text-left">Email</th>
+                            <th class="border-b border-gray-600 p-2 text-left">Nom</th>
+                            <th class="border-b border-gray-600 p-2 text-left">Prénom</th>
+                            <th class="border-b border-gray-600 p-2 text-left">Date de naissance</th>
+                            <th class="border-b border-gray-600 p-2 text-left">Téléphone</th>
+                            <th class="border-b border-gray-600 p-2 text-left">Rôle</th>  
+                            <th class="border-b border-gray-600 p-2 text-left">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($users as $user)
                             <tr>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
+                                <td class="border-b border-gray-600 p-2 text-left">{{ $user->name }}</td>
+                                <td class="border-b border-gray-600 p-2 text-left">{{ $user->email }}</td>
                                 @if ($user->userData)
-                                    <td>{{ $user->userData->nom }}</td>
-                                    <td>{{ $user->userData->prenom }}</td>
-                                    <td>{{ $user->userData->date_naissance }}</td>
-                                    <td>{{ $user->userData->telephone }}</td>
-                                    <td>{{ $user->getRole() }}</td>
+                                    <td class="border-b border-gray-600 p-2 text-left">{{ $user->userData->nom }}</td>
+                                    <td class="border-b border-gray-600 p-2 text-left">{{ $user->userData->prenom }}</td>
+                                    <td class="border-b border-gray-600 p-2 text-left">{{ $user->userData->date_naissance }}</td>
+                                    <td class="border-b border-gray-600 p-2 text-left">{{ $user->userData->telephone }}</td>
+                                    <td class="border-b border-gray-600 p-2 text-left">{{ $user->getRole() }}</td>
                                 @else
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
+                                    <td class="border-b border-gray-600 p-2 text-left">-</td>
+                                    <td class="border-b border-gray-600 p-2 text-left">-</td>
+                                    <td class="border-b border-gray-600 p-2 text-left">-</td>
+                                    <td class="border-b border-gray-600 p-2 text-left">-</td>
+                                    <td class="border-b border-gray-600 p-2 text-left">-</td>
                                 @endif
-                                <td>
-                                    <a href="{{ route('users.show', $user) }}">Voir</a>
-                                    <a href="{{ route('users.edit', $user) }}">Modifier</a>
+                                <td class="border-b border-gray-600 p-2 text-left">
+                                    <a href="{{ route('users.show', $user) }}" class="text-blue-400 hover:text-blue-500 mr-4"><i class="fas fa-eye"></i></a>
+                                    <a href="{{ route('users.edit', $user) }}" class="text-yellow-400 hover:text-yellow-500 mr-4"><i class="fas fa-edit"></i></a>
                                     <form class="inline-block" action="{{ route('users.destroy', $user) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit">Supprimer</button>
+                                        <button type="submit" class="text-red-400 hover:text-red-500"><i class="fas fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
