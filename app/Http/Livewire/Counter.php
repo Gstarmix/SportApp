@@ -39,15 +39,16 @@ class Counter extends Component
         if ($age < 18){
             $this->mineur = true;
     
-            $tuteur = new User();
-            $tuteur->name = $this->user_data->tuteur_nom;
-            $tuteur->email = $this->user_data->tuteur_email;
-            $tuteur->role = User::ROLE_TUTEUR; // Assurez-vous d'avoir ce rôle défini dans votre modèle User
-            $tuteur->password = Str::random(40);
-            $tuteur->save();
+            $tutor = new User();
+            $tutor->name = $this->user_data->tuteur_nom;
+            $tutor->email = $this->user_data->tuteur_email;
+            $tutor->role = User::ROLE_TUTEUR; 
+            $tutor->password = Str::random(40);
+            $tutor->save();
             
             $this->user->role = User::ROLE_SPORTIF;
             $this->user->password = Str::random(40);
+            $this->user->tutor_id = $tutor->id;
             $this->user->save();
             
             $this->user_data->user_id = $this->user->id;
@@ -59,6 +60,7 @@ class Counter extends Component
             $this->user_data->save();
         }
     }
+    
 
     
     public function render()

@@ -17,10 +17,6 @@ class UserData extends Model
         'prenom',
         'date_naissance',
         'telephone',
-        'tuteur_nom',
-        'tuteur_prenom',
-        'tuteur_email',
-        'tuteur_telephone'
     ];
 
     protected $dates = [
@@ -30,10 +26,5 @@ class UserData extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function tutor()
-    {
-        return $this->hasOne(Tutor::class);
     }
 }
