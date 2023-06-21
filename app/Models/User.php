@@ -12,13 +12,18 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    const ROLE_ADMIN = 0;
+    const ROLE_MEMBRE_ASSO = 1;
+    const ROLE_SPORTIF = 2;
+    const ROLE_TUTEUR = 3;
+    const ROLE_MONITEUR = 4;
 
     public $roles = [
-        'admin',
-        'membre asso',
-        'sportif',
-        'tuteur',
-        'moniteur'
+        self::ROLE_ADMIN => 'admin',
+        self::ROLE_MEMBRE_ASSO => 'membre asso',
+        self::ROLE_SPORTIF => 'sportif',
+        self::ROLE_TUTEUR => 'tuteur',
+        self::ROLE_MONITEUR => 'moniteur'
     ];
 
     /**
@@ -38,7 +43,6 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
         'remember_token',
     ];
 
@@ -70,5 +74,9 @@ class User extends Authenticatable
     public function categories()
     {
         return $this->hasMany(Category::class);
+    }
+    
+    public static function getRoles() {
+        return (new static)->roles;
     }
 }

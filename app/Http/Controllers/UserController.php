@@ -16,7 +16,8 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('users.create');
+        $roles = User::getRoles();
+        return view('users.create', ['roles' => $roles]);
     }
 
     public function store(Request $request)
@@ -58,7 +59,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $user->load('userData');
-        return view('users.edit', ['user' => $user]);
+        $roles = $user->roles;
+        return view('users.edit', ['user' => $user, 'roles' => $roles]);
     }
 
     public function update(Request $request, User $user)

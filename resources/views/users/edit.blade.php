@@ -44,10 +44,10 @@
 
                     <div class="flex items-center">
                         <label for="role" class="w-48"><i class="fas fa-user-tag mr-2"></i>Rôle</label>
-                        <select id="role" name="role" required class="p-2 bg-gray-700 rounded w-full input-black">
-                            <option value="admin" {{ $user->getRole() == 'admin' ? 'selected' : '' }}>Admin</option>
-                            <option value="moderator" {{ $user->getRole() == 'moderator' ? 'selected' : '' }}>Modérateur</option>
-                            <option value="user" {{ $user->getRole() == 'user' ? 'selected' : '' }}>Utilisateur</option>
+                        <select id="role" name="role" required class="p-2 bg-gray-700 rounded w-full input-black" wire:model="user.role">
+                            @foreach($roles as $index => $role)
+                                <option value="{{ $index }}" {{ $user->role == $index ? 'selected' : '' }}>{{ ucfirst($role) }}</option>
+                            @endforeach
                         </select>
                     </div>
 
