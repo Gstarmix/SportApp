@@ -15,6 +15,7 @@ class CreateUserDataTable extends Migration
             $table->string('prenom');
             $table->date('date_naissance');
             $table->string('telephone');
+            $table->string('email')->nullable();
             $table->timestamps();
         });
     }

@@ -12,11 +12,12 @@ class UserData extends Model
     protected $table = 'user_data';
 
     protected $fillable = [
-        'user_id',
         'nom',
         'prenom',
         'date_naissance',
         'telephone',
+        'user_id',
+        'email',
     ];
 
     protected $dates = [
@@ -26,5 +27,10 @@ class UserData extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function tuteur()
+    {
+        return $this->belongsTo(User::class, 'tutor_id');
     }
 }

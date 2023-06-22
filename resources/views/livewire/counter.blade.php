@@ -13,9 +13,9 @@
                     @enderror
                 </div>
 
-                <div class="flex items-center">
+                <div class="flex flex-col items-start">
                     <label for="email" class="w-48"><i class="fas fa-envelope mr-2"></i>Email</label>
-                    <input type="email" id="email" name="email" required class="p-2 bg-gray-700 rounded w-full input-black" wire:model="user.email">
+                    <input type="{{ $mineur ? 'text' : 'email' }}" id="email" name="email" {{ $mineur ? '' : 'required' }} class="p-2 bg-gray-700 rounded w-full input-black" wire:model="user.email">
                     @error('user.email') 
                         <span class="error">{{ $message }}</span>
                     @enderror
@@ -72,32 +72,32 @@
                     </div>
                     <div class="flex items-center">
                         <label for="tuteur_nom" class="w-48"><i class="fas fa-user mr-2"></i>Nom du tuteur</label>
-                        <input type="text" id="tuteur_nom" name="tuteur_nom" required class="p-2 bg-gray-700 rounded w-full input-black" wire:model="user_data.tuteur_nom">
-                        @error('user_data.tuteur_nom') 
+                        <input type="text" id="tuteur_nom" name="tuteur_nom" required class="p-2 bg-gray-700 rounded w-full input-black" wire:model="tuteur_data.nom">
+                        @error('tuteur_data.nom') 
                             <span class="error">{{ $message }}</span>
                         @enderror
                     </div>
 
                     <div class="flex items-center">
                         <label for="tuteur_prenom" class="w-48"><i class="fas fa-user mr-2"></i>Prénom du tuteur</label>
-                        <input type="text" id="tuteur_prenom" name="tuteur_prenom" required class="p-2 bg-gray-700 rounded w-full input-black" wire:model="user_data.tuteur_prenom">
-                        @error('user_data.tuteur_prenom') 
+                        <input type="text" id="tuteur_prenom" name="tuteur_prenom" required class="p-2 bg-gray-700 rounded w-full input-black" wire:model="tuteur_data.prenom">
+                        @error('tuteur_data.prenom') 
                             <span class="error">{{ $message }}</span>
                         @enderror
                     </div>
 
                     <div class="flex items-center">
                         <label for="tuteur_email" class="w-48"><i class="fas fa-envelope mr-2"></i>Email du tuteur</label>
-                        <input type="email" id="tuteur_email" name="tuteur_email" required class="p-2 bg-gray-700 rounded w-full input-black" wire:model="user_data.tuteur_email">
-                        @error('user_data.tuteur_email') 
+                        <input type="email" id="tuteur_email" name="tuteur_email" required class="p-2 bg-gray-700 rounded w-full input-black" wire:model="tuteur_data.email">
+                        @error('tuteur_data.email') 
                             <span class="error">{{ $message }}</span>
                         @enderror
                     </div>
 
                     <div class="flex items-center">
                         <label for="tuteur_telephone" class="w-48"><i class="fas fa-phone mr-2"></i>Téléphone du tuteur</label>
-                        <input type="text" id="tuteur_telephone" name="tuteur_telephone" required class="p-2 bg-gray-700 rounded w-full input-black" wire:model="user_data.tuteur_telephone">
-                        @error('user_data.tuteur_telephone') 
+                        <input type="text" id="tuteur_telephone" name="tuteur_telephone" required class="p-2 bg-gray-700 rounded w-full input-black" wire:model="tuteur_data.telephone">
+                        @error('tuteur_data.telephone') 
                             <span class="error">{{ $message }}</span>
                         @enderror
                     </div>

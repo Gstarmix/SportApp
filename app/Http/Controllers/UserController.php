@@ -33,6 +33,7 @@ class UserController extends Controller
             'prenom' => $request->input('prenom'),
             'date_naissance' => $request->input('date_naissance'),
             'telephone' => $request->input('telephone'),
+            'email' => $request->input('email'),
             'user_id' => $user->id,
         ]);
         $userData->save();

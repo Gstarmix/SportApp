@@ -20,8 +20,6 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->integer('role')->default(0)->nullable();
-            $table->unsignedBigInteger('tutor_id')->nullable(); 
-            $table->foreign('tutor_id')->references('id')->on('users')->onDelete('set null');
         });
     }
 
