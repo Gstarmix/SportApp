@@ -29,11 +29,11 @@ class Dashboard extends Component
     public function render()
     {
         return view('livewire.dashboard', [
-            'users' => User::paginate(10),
-            'tarifs' => Tarif::paginate(10),
-            'suscriptions' => Suscription::with('tarifs')->paginate(10),
-            'courses' => Course::paginate(10),
-            'categories' => Category::paginate(10),
+            'users' => User::paginate(5),
+            'tarifs' => Tarif::paginate(5),
+            'suscriptions' => Suscription::with('tarifs')->paginate(5),
+            'courses' => Course::paginate(5),
+            'categories' => Category::paginate(5),
         ]);
     }
 }
