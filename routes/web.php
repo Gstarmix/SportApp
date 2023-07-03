@@ -8,6 +8,7 @@ use App\Http\Controllers\TarifsController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\CategoriesController;
 use App\Models\Suscription;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -64,6 +65,8 @@ Route::middleware('auth')->group(function () {
 
     // Pour CategoriesController
     Route::resource('categories', CategoriesController::class);
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 require __DIR__.'/auth.php';

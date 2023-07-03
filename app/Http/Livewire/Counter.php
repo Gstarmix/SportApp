@@ -31,8 +31,9 @@ class Counter extends Component
         if ($this->mineur) {
             $rules['tuteur_data.nom'] = 'required|string';
             $rules['tuteur_data.prenom'] = 'required|string';
-            $rules['tuteur_data.email'] = 'required|email|unique:users,email';
+            $rules['tuteur.email'] = 'required|email|unique:users,email';
             $rules['tuteur_data.telephone'] = 'required|string';
+            $rules['tuteur_data.date_naissance'] = 'required|string';
         }
     
         return $rules;
@@ -58,15 +59,15 @@ class Counter extends Component
 
             $this->tuteur_data->user_id = $this->tuteur->id;
             $this->tuteur_data->save();
-
-            $this->user_data->tutor_id = $this->tuteur->id;
+            $this->user_data->has_tutor = 1;
+        }
+        if (!$this->mineur){
+            $this->user->email = $this->user->email ?? null; 
+            $this->user->password = Str::random(40);
+            $this->user->save();
         }
 
-        $this->user->email = $this->user->email ?? null; 
-        $this->user->password = Str::random(40);
-        $this->user->save();
-
-        $this->user_data->user_id = $this->user->id;
+        $this->user_data->user_id = ($this->mineur) ? $this->tuteur->id : $this->user->id;
         $this->user_data->save();
     }
 

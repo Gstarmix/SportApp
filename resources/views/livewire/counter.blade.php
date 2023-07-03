@@ -13,7 +13,7 @@
                     @enderror
                 </div>
 
-                <div class="flex flex-col items-start">
+                <div class="flex items-center">
                     <label for="email" class="w-48"><i class="fas fa-envelope mr-2"></i>Email</label>
                     <input type="{{ $mineur ? 'text' : 'email' }}" id="email" name="email" {{ $mineur ? '' : 'required' }} class="p-2 bg-gray-700 rounded w-full input-black" wire:model="user.email">
                     @error('user.email') 
@@ -88,7 +88,7 @@
 
                     <div class="flex items-center">
                         <label for="tuteur_email" class="w-48"><i class="fas fa-envelope mr-2"></i>Email du tuteur</label>
-                        <input type="email" id="tuteur_email" name="tuteur_email" required class="p-2 bg-gray-700 rounded w-full input-black" wire:model="tuteur_data.email">
+                        <input type="email" id="tuteur_email" name="tuteur_email" required class="p-2 bg-gray-700 rounded w-full input-black" wire:model="tuteur.email">
                         @error('tuteur_data.email') 
                             <span class="error">{{ $message }}</span>
                         @enderror
@@ -98,6 +98,14 @@
                         <label for="tuteur_telephone" class="w-48"><i class="fas fa-phone mr-2"></i>Téléphone du tuteur</label>
                         <input type="text" id="tuteur_telephone" name="tuteur_telephone" required class="p-2 bg-gray-700 rounded w-full input-black" wire:model="tuteur_data.telephone">
                         @error('tuteur_data.telephone') 
+                            <span class="error">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="flex items-center">
+                        <label for="tuteur_date_naissance" class="w-48"><i class="fas fa-phone mr-2"></i>Date de naissance du tuteur</label>
+                        <input type="date" id="tuteur_date_naissance" name="tuteur_date_naissance" required class="p-2 bg-gray-700 rounded w-full input-black" wire:model="tuteur_data.date_naissance">
+                        @error('tuteur_data.date_naissance') 
                             <span class="error">{{ $message }}</span>
                         @enderror
                     </div>

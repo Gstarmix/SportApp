@@ -65,6 +65,11 @@ class User extends Authenticatable
     {
         return $this->belongsTo(User::class, 'tutor_id');
     }
+
+    public function enfants()
+    {
+        return $this->hasMany(User::class, 'tutor_id');
+    }
     
     public static function getRoles() {
         return (new static)->roles;

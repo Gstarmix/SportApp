@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
             CoursesTableSeeder::class,
             CategoriesTableSeeder::class,
             TarifsTableSeeder::class,
-            TutorsTableSeeder::class,
         ]);
     }
 }
