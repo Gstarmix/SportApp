@@ -16,10 +16,6 @@ class Dashboard extends Component
     use WithPagination;
 
     public User $user;
-    public array $tarifs = [];
-    public array $suscriptions = [];
-    public array $courses = [];
-    public array $categories = [];
     public string $welcomeMessage;
 
     protected $paginationTheme = 'tailwind';
@@ -27,10 +23,6 @@ class Dashboard extends Component
     public function mount($welcomeMessage)
     {
         $this->user = Auth::user();
-        $this->tarifs = Tarif::paginate(10)->toArray();
-        $this->suscriptions = Suscription::with('tarifs')->get()->toArray();
-        $this->courses = Course::all()->toArray();
-        $this->categories = Category::all()->toArray();
         $this->welcomeMessage = $welcomeMessage;
     }
 
