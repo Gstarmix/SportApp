@@ -32,14 +32,9 @@ class DashboardController extends Controller
         if ($user && $user->user_data) {
             $user_data = $user->user_data;
             $welcomeMessage = "Bonjour, " . $user_data->prenom . " " . $user_data->nom;
-    
-            if ($user_data->tutor_id) {
-                $tutor = Tutor::find($user_data->tutor_id);
-                $welcomeMessage .= ". Votre tuteur est " . $tutor->prenom . " " . $tutor->nom;
-            }
         }
-    
+        
         return view('dashboard', compact('users', 'tarifs', 'suscriptions', 'courses', 'categories'))
-            ->with('welcomeMessage', $welcomeMessage);
+                ->with('welcomeMessage', $welcomeMessage);
     }
 }

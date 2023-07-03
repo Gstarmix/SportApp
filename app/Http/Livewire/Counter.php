@@ -51,25 +51,29 @@ class Counter extends Component
     public function submit()
     {
         $this->validate();
-
+    
         if ($this->mineur){
             $this->tuteur->name = $this->tuteur_data->nom.' '.$this->tuteur_data->prenom; 
             $this->tuteur->password = Str::random(40); 
             $this->tuteur->save();
-
+    
             $this->tuteur_data->user_id = $this->tuteur->id;
             $this->tuteur_data->save();
             $this->user_data->has_tutor = 1;
+    
+            $this->user->tutor_id = $this->tuteur->id; // Lie le mineur à son tuteur
         }
         if (!$this->mineur){
             $this->user->email = $this->user->email ?? null; 
             $this->user->password = Str::random(40);
-            $this->user->save();
         }
-
-        $this->user_data->user_id = ($this->mineur) ? $this->tuteur->id : $this->user->id;
+    
+        $this->user->save();
+    
+        $this->user_data->user_id = $this->user->id;
         $this->user_data->save();
     }
+    
 
     public function render()
     {
