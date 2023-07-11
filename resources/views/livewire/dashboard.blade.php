@@ -1,6 +1,6 @@
 <div>
     <p>{{ $welcomeMessage }}</p>
-</div>
+</div>x
 <!-- Utilisateurs -->
 @if ($user->role <= App\Models\User::ROLE_ADMIN)
 <h3 class="text-lg font-semibold text-white mt-6">Utilisateurs</h3>
@@ -20,28 +20,20 @@
         <tbody>
             @foreach ($users as $user)
                 <tr>
-                    <td class="border-b border-gray-600 p-2 text-left">{{ $user['name'] }}</td>
-                    <td class="border-b border-gray-600 p-2 text-left">{{ $user['email'] }}</td>
-                    @if (isset($user['userData']))
-                        <td class="border-b border-gray-600 p-2 text-left">{{ $user['userData']['nom'] }}</td>
-                        <td class="border-b border-gray-600 p-2 text-left">{{ $user['userData']['prenom'] }}</td>
-                        <td class="border-b border-gray-600 p-2 text-left">{{ $user['userData']['date_naissance'] }}</td>
-                        <td class="border-b border-gray-600 p-2 text-left">{{ $user['userData']['telephone'] }}</td>
-                    @else
-                        <td class="border-b border-gray-600 p-2 text-left">-</td>
-                        <td class="border-b border-gray-600 p-2 text-left">-</td>
-                        <td class="border-b border-gray-600 p-2 text-left">-</td>
-                        <td class="border-b border-gray-600 p-2 text-left">-</td>
-                    @endif
-                    <td class="border-b border-gray-600 p-2 text-left">{{ $user['role'] }}</td>
+                    <td class="border-b border-gray-600 p-2 text-left">{{ isset($user->name) ? $user->name : "x" }}</td>
+                    <td class="border-b border-gray-600 p-2 text-left">{{ isset($user->email) ? $user->email : "-"  }}</td>
+                    <td class="border-b border-gray-600 p-2 text-left">{{ isset($user->nom) ? $user->nom : "" }}</td>
+                    <td class="border-b border-gray-600 p-2 text-left">{{ isset($user->prenom) ? $user->prenom : "-" }}</td>
+                    <td class="border-b border-gray-600 p-2 text-left">{{ isset($user->date_naissance) ? $user->date_naissance : "-" }}</td>
+                    <td class="border-b border-gray-600 p-2 text-left">{{ isset($user->telephone) ? $user->telephone : "-" }}</td>
+                    <td class="border-b border-gray-600 p-2 text-left">{{ isset($user->role) ? $user->role : "-" }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-</div>
-@if ($users instanceof \Illuminate\Pagination\LengthAwarePaginator)
     {{ $users->links() }}
-@endif
+</div>
+
 @endif
 
 <!-- Tarifs -->

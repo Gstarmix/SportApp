@@ -29,12 +29,23 @@ class DashboardController extends Controller
         // dd($user->user_data);
         $welcomeMessage = "Bonjour, visiteur";
     
-        if ($user && $user->user_data) {
-            $user_data = $user->user_data;
-            $welcomeMessage = "Bonjour, " . $user_data->prenom . " " . $user_data->nom;
+        if ($user) {
+            $user_data =  UserData::where("user_id", "=", $user->id)->first();
+            if ($user_data) {
+                $welcomeMessage = "Bonjour, " . $user_data->prenom . " " . $user_data->nom;
+            } else {
+                $welcomeMessage = "Bonjour," . $user->name;
+            }
         }
         
-        return view('dashboard', compact('users', 'tarifs', 'suscriptions', 'courses', 'categories'))
-                ->with('welcomeMessage', $welcomeMessage);
+        return view('dashboard',[
+            "users" => $users,
+            "tarifs" => $tarifs,
+            "suscriptions" => $suscriptions,
+            "courses" => $courses,
+            "categories" => $categories,
+            "welcomeMessage" => $welcomeMessage,
+            "use" => $user,
+        ]);
     }
 }
